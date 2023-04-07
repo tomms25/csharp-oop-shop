@@ -1,41 +1,47 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Diagnostics;
 using System.Xml.Linq;
+using csharp_oop_shop;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 Console.WriteLine("Hello, World!");
 
-//Nel progetto csharp-oop-shop, creare la classe Prodotto che gestisce i prodotti dello shop.
-//Un prodotto è caratterizzato da:
-//-codice(numero intero)
-//- nome
-//- descrizione
-//- prezzo
-//- iva
-//Usate opportunamente i livelli di accesso (public, private), i costruttori, i metodi getter e setter ed eventuali altri metodi di “utilità” per fare in modo che:
-//alla creazione di un nuovo prodotto il codice sia valorizzato con un numero random
-//Il codice prodotto sia accessibile solo in lettura
-//Gli altri attributi siano accessibili sia in lettura che in scrittura
-//Il prodotto esponga sia un metodo per avere il prezzo base che uno per avere il prezzo comprensivo di iva
-//Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome
-//Testate poi i vostri oggetti Prodotto, istanziandoli e provando ad interargirci per testare tutti i metodi che avete previsto.
 
+int lenght = Convert.ToInt32(Console.ReadLine());
 
-public class Prodotto
+Product[] products = new Product[lenght];
+
+for (int i = 0; i < lenght; i++)
 {
-    public string Codice { get; }
-    public string Nome { get; set; }
-    public string Descrizione { get; set; }
-    public double Prezzo { get; set; }
-    public int Iva { get; set; }
+    Console.WriteLine($"Inserire il nome del {i + 1}° prodotto:");
+    string name = Console.ReadLine();
 
+    Console.WriteLine($"Inserire la descrizione del {i + 1}° prodotto:");
+    string description = Console.ReadLine();
 
-    public Prodotto(string nome, string descrizione, double prezzo, int iva)
-    {
-        Codice = CreaCodice();
-        Nome = nome;
-        Descrizione = descrizione;
-        Prezzo = prezzo;
-        Iva = iva;
-    }
+    Console.WriteLine($"Inserire il prezzo del {i + 1}° prodotto:");
+    double prezzo = Convert.ToDouble(Console.ReadLine());
+
+    Console.WriteLine($"Inserire l'iva sul {i + 1}° prodotto:");
+    int iva = Convert.ToInt32(Console.ReadLine());
+
+    Product obj = new Product(name, description, prezzo, iva);
+
+    products[i] = obj;
+
+    Console.WriteLine("Prodotto inserito correttamente.");
+
+    Console.WriteLine();
 }
+
+
+Console.WriteLine("Lista dei prodotti:");
+Console.WriteLine();
+
+
+for (int i = 0; i < products.Length; i++)
+{
+    Console.WriteLine(products[i].ToString());
+    Console.WriteLine();
+}
+
